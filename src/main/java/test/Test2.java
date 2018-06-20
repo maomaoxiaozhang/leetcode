@@ -30,6 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.IntConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,16 +38,20 @@ import java.util.regex.Pattern;
  * Created by lenovo on 2017/11/24.
  */
 public class Test2 {
-    private static final Logger logger = Logger.getLogger(Test2.class.getName());
     public static void main(String[] args) {
-        // 记录debug级别的信息
-        logger.debug("This is debug message.");
-        // 记录info级别的信息
-        logger.info("This is info message.");
-        // 记录error级别的信息
-        logger.error("This is error message.");
-    }
+        new Thread(() -> {});
 
+        Set set = new TreeSet((x, y) -> {
+            return 0;
+        });
+
+
+        ClassLoader loader = Test2.class.getClassLoader();
+        while (loader != null) {
+            System.out.println(loader.getClass());
+            loader = loader.getParent();
+        }
+    }
 }
 
 
